@@ -45,10 +45,14 @@ class Item:
         Проверка длины наименования, если длина больше 10 символов, выводится сообщение
         "Exception: Длина наименования товара превышает 10 символов". Обрезает наименование до 10 символов
          """
-        name = value
-        self.__name = name
-        if len(name) > 10:
-            print(f"Exception: Длина наименования товара превышает 10 символов '{name[:10]}'")
+
+        self.__name = value
+        if len(value) > 10:
+            value = value[0:10]
+            self.__name = value
+            print(f"Exception: Длина наименования товара превышает 10 символов '{value}'")
+        # else:
+        #     self.__name = name
 
     @classmethod
     def instantiate_from_csv(cls, csv_file):
