@@ -51,8 +51,8 @@ class Item:
             value = value[0:10]
             self.__name = value
             print(f"Exception: Длина наименования товара превышает 10 символов '{value}'")
-        # else:
-        #     self.__name = name
+        else:
+            self.__name = value
 
     @classmethod
     def instantiate_from_csv(cls, csv_file):
