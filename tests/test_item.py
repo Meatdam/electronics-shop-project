@@ -9,6 +9,13 @@ def test_item():
     return Item('Смартфон', 10000, 2)
 
 
+def test_repr_str(test_item):
+    """Проверка метода __repr__ и метода __str__"""
+    test_repr_ = test_item
+    assert repr(test_repr_) == "Item('Смартфон', 10000, 2)"
+    assert str(test_repr_) == "Смартфон"
+
+
 def test_calculator_total_price(test_item):
     """Проверка Общей стоимости товара"""
     assert test_item.calculate_total_price() == 20000.0
