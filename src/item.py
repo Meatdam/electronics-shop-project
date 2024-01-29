@@ -35,9 +35,15 @@ class Item:
         self.price *= self.pay_rate
 
     def __repr__(self):
+        """Отладка для разработчика
+         return: <имя класа(товар, цена, количество)>
+         """
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
+        """В случае если пользователь обращается к классу
+        return: <Наименование товара>
+        """
         return f"{self.__name}"
 
     @property
