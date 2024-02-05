@@ -1,12 +1,17 @@
-"""Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 from src.item import Item
 from config import OPERATION_PATH
+from src.phone import Phone
 
 
 @pytest.fixture
 def test_item():
     return Item('Смартфон', 10000, 2)
+
+
+@pytest.fixture
+def test_phone():
+    return Phone("iPhone 14", 120_000, 5, 2)
 
 
 def test_repr_str(test_item):
@@ -50,3 +55,19 @@ def test_instantiate_from_csv(test_item):
      в экзампляр класса, добавление в self.all список"""
     test_item.instantiate_from_csv(OPERATION_PATH)
     assert len(test_item.all) == 5
+
+
+def test_add(test_phone, test_item):
+    """
+    Проверка сложения количества (quantyti)
+    """
+    assert test_phone + test_item == 7
+    assert test_phone + test_item == 7
+
+
+def test_add_error(test_item):
+    """
+    Отлавливает ошибку ValueError
+    """
+    with pytest.raises(ValueError):
+        test_item + 2
