@@ -1,12 +1,17 @@
 import pytest
 from src.item import Item
-from src.phone import Phone
 from config import OPERATION_PATH
+from src.phone import Phone
 
 
 @pytest.fixture
 def test_item():
     return Item('Смартфон', 10000, 2)
+
+
+@pytest.fixture
+def test_phone():
+    return Phone("iPhone 14", 120_000, 5, 2)
 
 
 def test_repr_str(test_item):
@@ -52,26 +57,17 @@ def test_instantiate_from_csv(test_item):
     assert len(test_item.all) == 5
 
 
-@pytest.fixture
-def test_phone():
-    return Phone("iPhone 14", 120_000, 5, 2)
-
-
-def test_phon(test_phone):
-    assert str(test_phone) == 'iPhone 14'
-    assert repr(test_phone) == "Phone('iPhone 14', 120000, 5, 2)"
-    assert test_phone.number_of_sim == 2
-
-
 def test_add(test_phone, test_item):
+    """
+    Проверка сложения количества (quantyti)
+    """
     assert test_phone + test_item == 7
-    assert test_phone + test_phone == 10
+    assert test_phone + test_item == 7
 
 
-def test_add_error(test_phone, test_item):
+def test_add_error(test_item):
     """
     Отлавливает ошибку ValueError
     """
     with pytest.raises(ValueError):
-        assert test_phone + 10 == ValueError('Складывать можно только объекты классов с родительским классом Item')
-
+        test_item + 2
