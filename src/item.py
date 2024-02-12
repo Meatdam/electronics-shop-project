@@ -74,11 +74,15 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, csv_file):
         """Добавление экземпляров класса с CSV файлов"""
-        cls.all = []
-        with open(csv_file) as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                cls(str(row["name"]), float(row["price"]), int(row["quantity"]))
+        try:
+            with open(csv_file) as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    cls(str(row["name"]), float(row["price"]), int(row["quantity"]))
+        except FileNotFoundError:
+            print('Отсутствует файл item.csv')
+        except KeyError:
+            print('Файл item.csv поврежден')
 
     @staticmethod
     def string_to_number(number):
