@@ -54,7 +54,7 @@ def test_instantiate_from_csv(test_item):
     """Проверка на корректное добавление с CSV файла данных,
      в экзампляр класса, добавление в self.all список"""
     test_item.instantiate_from_csv(OPERATION_PATH)
-    assert len(test_item.all) == 5
+    assert len(test_item.all) == 6
 
 
 def test_add(test_phone, test_item):
@@ -71,3 +71,8 @@ def test_add_error(test_item):
     """
     with pytest.raises(ValueError):
         test_item + 2
+
+
+def test_instantiate_from_csv_error(test_item):
+    with pytest.raises(TypeError):
+        test_item.instantiate_from_csv()
