@@ -76,3 +76,13 @@ def test_add_error(test_item):
 def test_instantiate_from_csv_error(test_item):
     with pytest.raises(TypeError):
         test_item.instantiate_from_csv()
+
+
+def test_instance_from_csv(test_item):
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('items2.csv')
+    with pytest.raises(KeyError):
+        Item.instantiate_from_csv('../src/items2.csv')
+
+
+

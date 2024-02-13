@@ -80,9 +80,11 @@ class Item:
                 for row in reader:
                     cls(str(row["name"]), float(row["price"]), int(row["quantity"]))
         except FileNotFoundError:
-            print('Отсутствует файл item.csv')
+            print(f'Отсутствует файл {csv_file}')
+            raise
         except KeyError:
-            print('Файл item.csv поврежден')
+            print(f'Файл {csv_file} поврежден')
+            raise
 
     @staticmethod
     def string_to_number(number):
