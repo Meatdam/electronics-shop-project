@@ -2,6 +2,7 @@ import pytest
 from src.item import Item
 from config import OPERATION_PATH
 from src.phone import Phone
+from src.item import Item, InstantiateCSVError
 
 
 @pytest.fixture
@@ -81,7 +82,7 @@ def test_instantiate_from_csv_error(test_item):
 def test_instance_from_csv(test_item):
     with pytest.raises(FileNotFoundError):
         Item.instantiate_from_csv('items2.csv')
-    with pytest.raises(KeyError):
+    with pytest.raises(InstantiateCSVError):
         Item.instantiate_from_csv('../src/items2.csv')
 
 
