@@ -1,6 +1,15 @@
 import csv
 
 
+class InstantiateCSVError(Exception):
+
+    def __init__(self, *args, **kwargs):
+        self.message = 'Файл повреждён'
+
+    def __str__(self):
+        return self.message
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -82,9 +91,8 @@ class Item:
         except FileNotFoundError:
             print(f'Отсутствует файл {csv_file}')
             raise
-        except KeyError:
-            print(f'Файл {csv_file} поврежден')
-            raise
+        except (ValueError, KeyError):
+            raise InstantiateCSVError
 
     @staticmethod
     def string_to_number(number):
