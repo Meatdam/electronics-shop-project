@@ -86,8 +86,6 @@ class Item:
         try:
             with open(csv_file) as csvfile:
                 reader = csv.DictReader(csvfile)
-                if 'name' not in reader or 'price' not in reader or 'quantity' not in reader:
-                    raise InstantiateCSVError
                 for row in reader:
                     cls(str(row["name"]), float(row["price"]), int(row["quantity"]))
         except FileNotFoundError:
